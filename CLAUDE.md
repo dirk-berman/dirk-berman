@@ -2,14 +2,65 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Status
+## What this repository is
 
-This repository is currently empty — it contains no source files, build configuration, or tests.
+`dirk-berman/dirk-berman` is a GitHub **profile repository** — the special repo whose name matches the
+account name. Its root `README.md` is rendered on <https://github.com/dirk-berman>, above the pinned
+repositories. That single file is the entire product of this repo; there is no application code.
 
-History shows it was intentionally cleared for new content (`dd03f7a "Repo leeggemaakt, klaar voor nieuwe inhoud"`); the only files that ever existed were a `README.md` and a `demo/` directory of sample output documents, both since deleted.
+Two consequences:
 
-There is therefore no build, test, or lint command to run, and no architecture to describe.
+- **Pushing `main` publishes.** There is no build step, no CI, and no preview environment — the profile
+  page re-renders from `main` within seconds. Treat every push as a live edit to a public page.
+- **Only root `README.md` renders.** Files in subdirectories, or a README under any other name, are
+  invisible on the profile.
 
-## When adding content
+Tracked files at HEAD: `README.md` and this `CLAUDE.md`. Nothing else.
 
-Once the project has real code, re-run `/init` to replace this placeholder with guidance derived from the actual codebase: commands (build, test, run a single test, lint) and the high-level architecture.
+## Current state of README.md
+
+It is still GitHub's **unmodified starter template** (commit `8dd87d3`, created through the GitHub web
+UI). Everything below the first line sits inside a single `<!-- ... -->` block, so the profile page
+currently shows only:
+
+```
+## Hi there 👋
+```
+
+The commented-out body is GitHub's list of prompts (working on / learning / collaborate on / reach me /
+pronouns / fun fact). When writing real content, replace that block rather than uncommenting it — the
+placeholder ellipses are not meant to ship.
+
+Because the rendered output and the file contents diverge so much here, **check what actually renders**
+before reporting the profile as changed: content inside the comment block has no effect.
+
+## GitHub Markdown constraints
+
+The profile README is rendered by GitHub, not by a static site generator, so:
+
+- HTML is allowed but sanitized — no `<script>`, no `<style>`, no inline `style=` attributes.
+- Relative links and relative image paths resolve against this repo. Anything referencing another repo
+  needs an absolute URL.
+- Alignment beyond Markdown (centering, side-by-side badges) requires `<div align="center">` / `<p
+  align="center">`, one of the few HTML attributes GitHub keeps.
+- Light/dark theming needs `<picture>` with `prefers-color-scheme` sources; a single image will look
+  wrong in one of the two themes.
+
+## Build, test, lint
+
+None, and none is warranted — the repo holds one Markdown file. Verification is visual: read the file
+and confirm which parts fall outside the comment block.
+
+## Language
+
+Prose and commit messages are in **Dutch**, short imperative one-liners (`Voeg CLAUDE.md placeholder
+toe`, `Repo leeggemaakt, klaar voor nieuwe inhoud`). The English messages in history
+(`Create README.md with profile template`, `Delete README.md`) are defaults GitHub's web UI supplied —
+not the convention. The README's own prose is currently English because it is untouched boilerplate;
+ask before assuming which language the finished profile text should be in.
+
+## Inherited context
+
+`/home/dirk/Projects/CLAUDE.md` describes the surrounding workspace and its sibling clones.
+`/home/dirk/CLAUDE.md` is loaded automatically too, but documents the dotfiles bare repo at
+`/home/dirk/.cfg` — none of it applies here.
